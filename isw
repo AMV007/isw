@@ -259,8 +259,14 @@ def ec_read(value):
 				print(Text.TEMP_FS_END+Text.CURSOR_UP+Text.CURSOR_UP)
 				time.sleep(2)
 		print(Text.TEMP_FS_END)
-	except:
+	except ValueError:
 		print(Text.CURSOR_DOWN+Text.CURSOR_LEFT+Text.CURSOR_LEFT+Text.TEMP_FS_END)
+		print('\nError: Option -r expects a '+Text.ULINED+'NUMBER'+Text.CLEAR+' (or nothing for infinite loop), not a section name.')
+		print('Usage: isw -r     (infinite loop)')
+		print('       isw -r 5   (read 5 times)')
+	except Exception as e:
+		print(Text.CURSOR_DOWN+Text.CURSOR_LEFT+Text.CURSOR_LEFT+Text.TEMP_FS_END)
+		print('\nError reading EC: '+str(e))
 
 def ec_set(value):
 	# Option -s, set a single value into EC
