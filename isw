@@ -276,6 +276,9 @@ def ec_read(value):
         print('\nError: Option -r expects a '+Text.ULINED+'NUMBER'+Text.CLEAR+' (or nothing for infinite loop), not a section name.')
         print('Usage: isw -r     (infinite loop)')
         print('       isw -r 5   (read 5 times)')
+    except KeyboardInterrupt:
+        print(Text.CURSOR_DOWN+Text.CURSOR_LEFT+Text.CURSOR_LEFT+Text.TEMP_FS_END)
+        print('\nReading stopped by user.')
     except Exception as e:
         print(Text.CURSOR_DOWN+Text.CURSOR_LEFT+Text.CURSOR_LEFT+Text.TEMP_FS_END)
         print('\nError reading EC: '+str(e))
@@ -519,6 +522,7 @@ def main():
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
     parser.parse_args()
+
 
 if __name__ == '__main__':
     main()
